@@ -1,94 +1,80 @@
 @extends('service.service')
 
 @section('serviceTable')
-<div class="limiter">
-    <div class="container-table100">
-        <div class="wrap-table100">
-            <div class="table100 ver1 m-b-110">
-                <div class="table100-head">
-                    <table id="stockTable">
-                        <thead>
-                            <tr class="row100 head">
-                                <th class="cell100 column">ID</th>
-                                <th class="cell100 column">Model name</th>
-                                <th class="cell100 column">Serial number</th>
-                                <th class="cell100 column">FlowTag number</th>
-                                <th class="cell100 column">Type</th>
-                                <th class="cell100 column">Status</th>
-                                <th class="cell100 column">Remark</th>
-                                <th class="cell100 column">Quantity</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
 
-                <div class="table100-body js-pscroll">
-                    <table>
-                        <tbody>
-                            @foreach ($serviceData as $data)
-                            <tr class="row100 body">
-                                <td id="idTd" class="cell100 column">{{$data->id}}</td>
-                                <td id="modelNameTd" class="cell100 column">{{$data->modelName}}</td>
-                                <td id="modelNameTd" class="cell100 column">{{$data->serialNumber}}</td>
-                                <td id="modelNameTd" class="cell100 column">{{$data->flowTagNumber}}</td>
-                                <td id="typeTd" class="cell100 column">{{$data->type}}</td>
-                                <td id="statusTd" class="cell100 column">{{$data->status}}</td>
-                                <td id="remarkTd" class="cell100 column">{{$data->remark}}</td>
-                                <td id="quantityTd" class="cell100 column">{{$data->quantity}}</td>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<div class="container">
+    <h3>Service Record Directory</h3>
+    <hr>
+
+    <!-- Add a button for add -->
+    <table class="table table-bordered table-striped ">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Model name</th>
+                <th>Serial number</th>
+                <th>FlowTag number</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Remark</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($serviceData as $data)
+            <tr>
+                <td>{{$data->id}}</td>
+                <td>{{$data->modelName}}</td>
+                <td>{{$data->serialNumber}}</td>
+                <td>{{$data->flowTagNumber}}</td>
+                <td>{{$data->type}}</td>
+                <td>{{$data->status}}</td>
+                <td>{{$data->remark}}</td>
+                <td>{{$data->quantity}}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+    <hr>
 
 @endsection
 
 
 
 @section('edit')
-
 <div class="container">
+    <p class="h4 mb-4">Add Service Record</p>
     <form action="/service-edit/{{$service->id}}" target="_blank" method="POST">
         @csrf
         @method('PUT')
         <div class="form-group">
-            <label for="fname">ID:</label><br>
-            <label for="fname">{{$service->id}}</label><br>
+            <input class="form-control mb-4" type="text" value="{{$service->id}}" placeholder="{{$service->id}}" disabled>
         </div>
         <div class="form-group">
-            <label for="fname">Model name:</label><br>
-            <input class="form-control" type="text" id="modelName" name="modelName" value="{{$service->modelName}}">
+            <input class="form-control mb-4" type="text" id="modelName" name="modelName" value="{{$service->modelName}}"
+                placeholder="Model Name">
         </div>
         <div class="form-group">
-            <label for="fname">Serial number:</label><br>
-            <input class="form-control" type="text" id="serialNumber" name="serialNumber" value="{{$service->serialNumber}}">
+            <input class="form-control mb-4" type="text" id="serialNumber" name="serialNumber" value="{{$service->serialNumber}}"
+                placeholder="Serial Number">
         </div>
         <div class="form-group">
-            <label for="fname">FlowTag number:</label><br>
-            <input class="form-control" type="text" id="flowTagNumber" name="flowTagNumber" value="{{$service->flowTagNumber}}">
+            <input class="form-control mb-4" type="text" id="flowTagNumber" name="flowTagNumber" value="{{$service->flowTagNumber}}"
+                placeholder="FlowTag Number">
         </div>
         <div class="form-group">
-            <label for="lname">Type:</label><br>
-            <input class="form-control" type="text" id="type" name="type" value="{{$service->type}}">
+            <input class="form-control mb-4" type="text" id="type" name="type" value="{{$service->type}}" placeholder="Type">
         </div>
         <div class="form-group">
-            <label for="lname">Quantity:</label><br>
-            <input class="form-control" type="text" id="quantity" name="quantity" value="{{$service->quantity}}">
+            <input class="form-control mb-4" type="text" id="quantity" name="quantity" value="{{$service->quantity}}" placeholder="Quantity">
         </div>
         <div class="form-group">
-            <label for="lname">Status:</label><br>
-            <input class="form-control" type="text" id="status" name="status" value="{{$service->status}}">
+            <input class="form-control mb-4" type="text" id="status" name="status" value="{{$service->status}}" placeholder="Status">
         </div>
         <div class="form-group">
-            <label for="lname">Remark:</label><br>
-            <input class="form-control" type="text" id="remark" name="remark" value="{{$service->remark}}">
+            <input class="form-control mb-4" type="text" id="remark" name="remark" value="{{$service->remark}}" placeholder="Remark">
         </div>
-        <input type="submit" value="Submit">
+        <button type="submit" class="btn btn-info col-2">Submit</button>
     </form>
 </div>
 

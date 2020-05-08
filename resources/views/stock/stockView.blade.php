@@ -1,47 +1,43 @@
 @extends('stock.stock')
 
 @section('stockTable')
-<div class="limiter">
-    <div class="container-table100">
-        <div class="wrap-table100">
-            <div class="table100 ver1 m-b-110">
-                <div class="table100-head">
-                    <table id="stockTable">
-                        <thead>
-                            <tr class="row100 head">
-                                <th class="cell100 column">ID</th>
-                                <th class="cell100 column">Model name</th>
-                                <th class="cell100 column">Type</th>
-                                <th class="cell100 column">Status</th>
-                                <th class="cell100 column">Remark</th>
-                                <th class="cell100 column">Quantity</th>
-                                <th class="cell100 column">Action</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
 
-                <div class="table100-body js-pscroll">
-                    <table>
-                        <tbody>
-                            @foreach ($stock as $data)
-                            <tr class="row100 body">
-                                <td id="idTd" class="cell100 column">{{$data->id}}</td>
-                                <td id="modelNameTd" class="cell100 column">{{$data->modelName}}</td>
-                                <td id="typeTd" class="cell100 column">{{$data->type}}</td>
-                                <td id="statusTd" class="cell100 column">{{$data->status}}</td>
-                                <td id="remarkTd" class="cell100 column">{{$data->remark}}</td>
-                                <td id="quantityTd" class="cell100 column">{{$data->quantity}}</td>
-                                <td id="actionTD" class="cell100 column"><a href="/stock-edit/{{$data->id}}">Edit</a><a href="/stock-delete/{{$data->id}}">Delete</a>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="container">
+    <h3>Stock Directory</h3>
+    <hr>
+
+    <!-- Add a button for add -->
+    <a href="/stock-create" class="btn btn-primary btn-sm mb-3"> Add Stock </a>
+    <table class="table table-bordered table-striped ">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Model name</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Remark</th>
+                <th>Quantity</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($stock as $data)
+            <tr>
+                <td>{{$data->id}}</td>
+                <td>{{$data->modelName}}</td>
+                <td>{{$data->type}}</td>
+                <td>{{$data->status}}</td>
+                <td>{{$data->remark}}</td>
+                <td>{{$data->quantity}}</td>
+                <td><a href="/stock-edit/{{$data->id}}" class="btn btn-info btn-sm">Edit</a>
+                    <a class="btn btn-danger btn-sm"
+                        onclick="if(!(confirm('Are you sure you want to delete this employee?')))return false"
+                        href="/stock-delete/{{$data->id}}">Delete</a>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>
 
 @endsection
