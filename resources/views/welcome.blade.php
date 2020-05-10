@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    CSI MANAGEMENT SYSTEM
+                    MANAGEMENT SYSTEM
                 </div>
 
                 <div class="links">
