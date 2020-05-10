@@ -29,6 +29,14 @@ class ServiceController extends Controller
 
     public function create()
     {
+        request()->validate([
+            'modelName' => ['required','min:3','max:255'],
+            'serialNumber' => ['required','min:3','max:255'],
+            'flowTagNumber' => ['required','min:3','max:255'],
+            'type' => ['required','min:3','max:255'],
+            'quantity' => ['required','min:3','max:255'],
+            'status' => ['required','min:3','max:255']
+        ]);
         $service = new Service();
         $service->modelName = request('modelName');
         $service->serialNumber = request('serialNumber');
@@ -53,6 +61,14 @@ class ServiceController extends Controller
 
     public function edit($id)
     {
+        request()->validate([
+            'modelName' => ['required','min:3','max:255'],
+            'serialNumber' => ['required','min:3','max:255'],
+            'flowTagNumber' => ['required','min:3','max:255'],
+            'type' => ['required','min:3','max:255'],
+            'quantity' => ['required','min:3','max:255'],
+            'status' => ['required','min:3','max:255']
+        ]);
         $service = Service::find($id);
         $service->modelName = request('modelName');
         $service->serialNumber = request('serialNumber');

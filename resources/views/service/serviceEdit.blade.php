@@ -37,45 +37,63 @@
     </table>
     <hr>
 
-@endsection
+    @endsection
 
 
 
-@section('edit')
-<div class="container">
-    <p class="h4 mb-4">Add Service Record</p>
-    <form action="/service-edit/{{$service->id}}" target="_blank" method="POST">
-        @csrf
-        @method('PUT')
-        <div class="form-group">
-            <input class="form-control mb-4" type="text" value="{{$service->id}}" placeholder="{{$service->id}}" disabled>
-        </div>
-        <div class="form-group">
-            <input class="form-control mb-4" type="text" id="modelName" name="modelName" value="{{$service->modelName}}"
-                placeholder="Model Name">
-        </div>
-        <div class="form-group">
-            <input class="form-control mb-4" type="text" id="serialNumber" name="serialNumber" value="{{$service->serialNumber}}"
-                placeholder="Serial Number">
-        </div>
-        <div class="form-group">
-            <input class="form-control mb-4" type="text" id="flowTagNumber" name="flowTagNumber" value="{{$service->flowTagNumber}}"
-                placeholder="FlowTag Number">
-        </div>
-        <div class="form-group">
-            <input class="form-control mb-4" type="text" id="type" name="type" value="{{$service->type}}" placeholder="Type">
-        </div>
-        <div class="form-group">
-            <input class="form-control mb-4" type="text" id="quantity" name="quantity" value="{{$service->quantity}}" placeholder="Quantity">
-        </div>
-        <div class="form-group">
-            <input class="form-control mb-4" type="text" id="status" name="status" value="{{$service->status}}" placeholder="Status">
-        </div>
-        <div class="form-group">
-            <input class="form-control mb-4" type="text" id="remark" name="remark" value="{{$service->remark}}" placeholder="Remark">
-        </div>
-        <button type="submit" class="btn btn-info col-2">Submit</button>
-    </form>
-</div>
+    @section('edit')
+    <div class="container">
+        <p class="h4 mb-4">Add Service Record</p>
+        <form action="/service-edit/{{$service->id}}" target="_blank" method="POST" class="needs-validation" novalidate>
+            @csrf
+            @method('PUT')
+            <div class="form-group">
+                <input class="form-control mb-4" type="text" value="{{$service->id}}" placeholder="{{$service->id}}"
+                    disabled>
+            </div>
+            <div class="form-group">
+                <input class="form-control mb-4" type="text" id="modelName" name="modelName"
+                    value="{{$service->modelName}}" required placeholder="Model Name">
+                <div class="invalid-feedback">Model name is required</div>
+                <div class="test">{{$errors->first('modelName')}}</div>
+            </div>
+            <div class="form-group">
+                <input class="form-control mb-4" type="text" id="serialNumber" name="serialNumber"
+                    value="{{$service->serialNumber}}" required placeholder="Serial Number">
+                <div class="invalid-feedback">Serial number is required</div>
+                <div class="test">{{$errors->first('serialNumber')}}</div>
+            </div>
+            <div class="form-group">
+                <input class="form-control mb-4" type="text" id="flowTagNumber" name="flowTagNumber"
+                    value="{{$service->flowTagNumber}}" required placeholder="FlowTag Number">
+                <div class="invalid-feedback">FlowTag number is required</div>
+                <div class="test">{{$errors->first('flowTagNumber')}}</div>
+            </div>
+            <div class="form-group">
+                <input class="form-control mb-4" type="text" id="type" name="type" value="{{$service->type}}"
+                    placeholder="Type" required>
+                <div class="invalid-feedback">Type is required</div>
+                <div class="test">{{$errors->first('type')}}</div>
+            </div>
+            <div class="form-group">
+                <input class="form-control mb-4" type="text" id="quantity" name="quantity"
+                    value="{{$service->quantity}}" placeholder="Quantity" required>
+                <div class="invalid-feedback">Quantity is required</div>
+                <div class="test">{{$errors->first('quantity')}}</div>
+            </div>
+            <div class="form-group">
+                <input class="form-control mb-4" type="text" id="status" name="status" value="{{$service->status}}"
+                    placeholder="Status" required>
+                <div class="invalid-feedback">Status is required</div>
+                <div class="test">{{$errors->first('status')}}</div>
+            </div>
+            <div class="form-group">
+                <input class="form-control mb-4" type="text" id="remark" name="remark" value="{{$service->remark}}"
+                    placeholder="Remark">
+            </div>
+            <button type="submit" class="btn btn-info col-2">Submit</button>
+            <a href="/service" class="btn btn-primary col-2">Back</a>
+        </form>
+    </div>
 
-@endsection
+    @endsection

@@ -45,33 +45,48 @@
 
 <div class="container">
     <p class="h4 mb-4">Add Service Record</p>
-    <form action="/service-create" target="_blank" method="POST">
+    <form class="needs-validation" action="/service-create" target="_blank" method="POST" novalidate>
         @csrf
         <div class="form-group">
-            <input class="form-control mb-4" type="text" id="modelName" name="modelName" value=""
+            <input class="form-control mb-4" type="text" id="modelName" name="modelName" value="" required
                 placeholder="Model Name">
+            <div class="invalid-feedback">Model name is required</div>
+            <div class="test">{{$errors->first('modelName')}}</div>
         </div>
         <div class="form-group">
-            <input class="form-control mb-4" type="text" id="serialNumber" name="serialNumber" value=""
+            <input class="form-control mb-4" type="text" id="serialNumber" name="serialNumber" value="" required
                 placeholder="Serial Number">
+            <div class="invalid-feedback">Serial number is required</div>
+            <div class="test">{{$errors->first('serialNumber')}}</div>
         </div>
         <div class="form-group">
-            <input class="form-control mb-4" type="text" id="flowTagNumber" name="flowTagNumber" value=""
+            <input class="form-control mb-4" type="text" id="flowTagNumber" name="flowTagNumber" value="" required
                 placeholder="FlowTag Number">
+            <div class="invalid-feedback">FlowTag number is required</div>
+            <div class="test">{{$errors->first('flowTagNumber')}}</div>
         </div>
         <div class="form-group">
-            <input class="form-control mb-4" type="text" id="type" name="type" value="" placeholder="Type">
+            <input class="form-control mb-4" type="text" id="type" name="type" value="" placeholder="Type" required>
+            <div class="invalid-feedback">Type is required</div>
+            <div class="test">{{$errors->first('type')}}</div>
         </div>
         <div class="form-group">
-            <input class="form-control mb-4" type="text" id="quantity" name="quantity" value="" placeholder="Quantity">
+            <input class="form-control mb-4" type="text" id="quantity" name="quantity" value="" placeholder="Quantity"
+                required>
+            <div class="invalid-feedback">Quantity is required</div>
+            <div class="test">{{$errors->first('quantity')}}</div>
         </div>
         <div class="form-group">
-            <input class="form-control mb-4" type="text" id="status" name="status" value="" placeholder="Status">
+            <input class="form-control mb-4" type="text" id="status" name="status" value="" placeholder="Status"
+                required>
+            <div class="invalid-feedback">Status is required</div>
+            <div class="test">{{$errors->first('status')}}</div>
         </div>
         <div class="form-group">
             <input class="form-control mb-4" type="text" id="remark" name="remark" value="" placeholder="Remark">
         </div>
         <button type="submit" class="btn btn-info col-2">Submit</button>
+        <a href="/service" class="btn btn-primary col-2">Back</a>
     </form>
 </div>
 

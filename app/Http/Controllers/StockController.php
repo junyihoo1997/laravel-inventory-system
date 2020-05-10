@@ -30,6 +30,12 @@ class StockController extends Controller
 
     public function create()
     {
+        request()->validate([
+            'modelName' => ['required','min:3','max:255'],
+            'type' => ['required','min:3','max:255'],
+            'quantity' => ['required','min:3','max:255'],
+            'status' => ['required','min:3','max:255']
+        ]);
         $stock = new Stock();
         $stock->modelName = request('modelName');
         $stock->type = request('type');
@@ -52,6 +58,13 @@ class StockController extends Controller
 
     public function edit($id)
     {
+        request()->validate([
+            'modelName' => ['required','min:3','max:255'],
+            'type' => ['required','min:3','max:255'],
+            'quantity' => ['required','min:3','max:255'],
+            'status' => ['required','min:3','max:255']
+        ]);
+        
         $stock = Stock::find($id);
         $stock->modelName = request('modelName');
         $stock->type = request('type');
