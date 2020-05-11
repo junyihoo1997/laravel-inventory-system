@@ -39,34 +39,46 @@
 <div class="container">
 
     <p class="h4 mb-4">Add Stock</p>
-    <form class="needs-validation" action="/stock-create" target="_blank" method="POST" novalidate>
+    <form action="{{ route('stock.create') }}"method="POST">
         @csrf
         <div class="form-group">
-            <input class="form-control mb-4" type="text" id="modelName" name="modelName" required value="" placeholder="Model Name">
-            <div class="invalid-feedback">Model name is required</div>
-            <div class="test">{{$errors->first('modelName')}}</div>
+            <input class="@error('modelName')inputError @enderror form-control mb-4" type="text" id="modelName"
+                name="modelName" value="{{ old('modelName') }}" placeholder="Model Name">
+            @error('modelName')
+            <div class="errorMsg">{{$errors->first('modelName')}}</div>
+            @enderror
         </div>
 
         <div class="form-group">
-            <input class="form-control mb-4" type="text" id="type" name="type" value="" placeholder="Type" required>
-            <div class="invalid-feedback">Type is required</div>
-            <div class="test">{{$errors->first('type')}}</div>
+            <input class="@error('type')inputError @enderror form-control mb-4" type="text" id="type" name="type"
+                value="{{ old('type') }}" placeholder="Type">
+            @error('type')
+            <div class="errorMsg">{{$errors->first('type')}}</div>
+            @enderror
         </div>
         <div class="form-group">
-            <input class="form-control mb-4" type="text" id="quantity" name="quantity" value="" placeholder="Quantity" required>
-            <div class="invalid-feedback">Quantity is required</div>
-            <div class="test">{{$errors->first('quantity')}}</div>
+            <input class="@error('quantity')inputError @enderror form-control mb-4" type="text" id="quantity"
+                name="quantity" value="{{ old('quantity') }}" placeholder="Quantity">
+            @error('quantity')
+            <div class="errorMsg">{{$errors->first('quantity')}}</div>
+            @enderror
         </div>
         <div class="form-group">
-            <input class="form-control mb-4" type="text" id="status" name="status" value="" placeholder="Status" required>
-            <div class="invalid-feedback">Status is required</div>
-            <div class="test">{{$errors->first('status')}}</div>
+            <input class="@error('status')inputError @enderror form-control mb-4" type="text" id="status" name="status"
+                value="{{ old('status') }}" placeholder="Status">
+            @error('status')
+            <div class="errorMsg">{{$errors->first('status')}}</div>
+            @enderror
         </div>
         <div class="form-group">
-            <input class="form-control mb-4" type="text" id="remark" name="remark" value="" placeholder="Remark">
+            <input class="@error('remark')inputError @enderror form-control mb-4" type="text" id="remark" name="remark"
+                value="{{ old('remark') }}" placeholder="Remark">
+            @error('remark')
+            <div class="errorMsg">{{$errors->first('remark')}}</div>
+            @enderror
         </div>
         <button type="submit" class="btn btn-info col-2">Submit</button>
-        <a href="/stock" class="btn btn-primary col-2">Back</a>
+        <a href="{{ route('stock.view') }}" class="btn btn-primary col-2">Back</a>
     </form>
 </div>
 

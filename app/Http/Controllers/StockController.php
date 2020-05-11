@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Stock;
 
@@ -13,72 +14,56 @@ class StockController extends Controller
 
     public function view()
     {
-        $stockData = Stock::all();
+        $stockData = Stock::latest()->get();;
         return view('stock.stockView', [
-            'stock'=> $stockData
+            'stock' => $stockData
         ]);
     }
 
     public function createView()
     {
-        // $stockData = Stock::take(10)->latest()->get();
-        $stockData = Stock::all();
+        $stockData = Stock::latest()->get();
         return view('stock.stockCreate', [
-            'stock'=> $stockData
-        ]);       
+            'stock' => $stockData
+        ]);
     }
 
     public function create()
     {
-        request()->validate([
-            'modelName' => ['required','min:3','max:255'],
-            'type' => ['required','min:3','max:255'],
-            'quantity' => ['required','min:3','max:255'],
-            'status' => ['required','min:3','max:255']
-        ]);
-        $stock = new Stock();
-        $stock->modelName = request('modelName');
-        $stock->type = request('type');
-        $stock->quantity = request('quantity');
-        $stock->status = request('status');
-        $stock->remark = request('remark');
-        $stock->save();
-        return redirect('/stock');        
+        Stock::create(request()->validate([
+            'modelName' => ['required', 'min:3', 'max:255'],
+            'type' => ['required', 'min:3', 'max:255'],
+            'quantity' => ['required', 'min:3', 'max:255'],
+            'status' => ['required', 'min:3', 'max:255'],
+            'remark' => ['min:3', 'max:255']
+        ]));
+        return redirect(route('stock.view'));
     }
-    
-    public function editView($id)
+
+    public function editView(Stock $stockId)
     {
-        $stock = Stock::find($id);
-        $stockData = Stock::all();
+        $stockData = Stock::latest()->get();
         return view('stock.stockEdit', [
-            'stockData'=> $stockData,
-            'stock' => $stock
-        ]);      
-    }
-
-    public function edit($id)
-    {
-        request()->validate([
-            'modelName' => ['required','min:3','max:255'],
-            'type' => ['required','min:3','max:255'],
-            'quantity' => ['required','min:3','max:255'],
-            'status' => ['required','min:3','max:255']
+            'stockData' => $stockData,
+            'stock' => $stockId
         ]);
-        
-        $stock = Stock::find($id);
-        $stock->modelName = request('modelName');
-        $stock->type = request('type');
-        $stock->quantity = request('quantity');
-        $stock->status = request('status');
-        $stock->remark = request('remark');
-        $stock->save();
-        return redirect('/stock');        
     }
 
-    public function delete($id)
+    public function edit(Stock $stockId)
     {
-        $stock = Stock::find($id);
-        $stock->delete();
-        return redirect('/stock');             
+        $stockId->update(request()->validate([
+            'modelName' => ['required', 'min:3', 'max:255'],
+            'type' => ['required', 'min:3', 'max:255'],
+            'quantity' => ['required', 'min:3', 'max:255'],
+            'status' => ['required', 'min:3', 'max:255'],
+            'remark' => ['min:3', 'max:255']
+        ]));
+        return redirect(route('stock.view'));
+    }
+
+    public function delete(Stock $stockId)
+    {
+        $stockId->delete();
+        return redirect(route('stock.view'));
     }
 }

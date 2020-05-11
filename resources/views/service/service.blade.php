@@ -37,10 +37,11 @@
         </div>
     </nav>
     <br />
-
-    @yield('serviceTable')
-    @yield('create')
-    @yield('edit')
+    <div class="body-content">
+        @yield('serviceTable')
+        @yield('create')
+        @yield('edit')
+    </div>
 </body>
 
 <script>

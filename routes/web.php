@@ -21,19 +21,19 @@ Route::get('/', function () {
 
 
 
-Route::get('/stock', 'StockController@view');
-Route::get('/stock-create', 'StockController@createView');
-Route::post('/stock-create', 'StockController@create');
-Route::get('/stock-edit/{stockId}', 'StockController@editView');
-Route::put('/stock-edit/{stockId}', 'StockController@edit');
-Route::get('/stock-delete/{stockId}', 'StockController@delete');
+Route::get('/stock', 'StockController@view')->name('stock.view');
+Route::get('/stock-create', 'StockController@createView')->name('stock.createView');
+Route::post('/stock-create', 'StockController@create')->name('stock.create');
+Route::get('/stock-edit/{stockId}', 'StockController@editView')->name('stock.editView');
+Route::put('/stock-edit/{stockId}', 'StockController@edit')->name('stock.edit');
+Route::get('/stock-delete/{stockId}', 'StockController@delete')->name('stock.delete');
 
-Route::get('/service', 'ServiceController@view');
-Route::get('/service-create', 'ServiceController@createView');
-Route::post('/service-create', 'ServiceController@create');
-Route::get('/service-edit/{serviceId}', 'ServiceController@editView');
-Route::put('/service-edit/{serviceId}', 'ServiceController@edit');
-Route::get('/service-delete/{serviceId}', 'ServiceController@delete');
+Route::get('/service', 'ServiceController@view')->name('service.view');
+Route::get('/service-create', 'ServiceController@createView')->name('service.createView');
+Route::post('/service-create', 'ServiceController@create')->name('service.create');
+Route::get('/service-edit/{serviceId}', 'ServiceController@editView')->name('service.editView');
+Route::put('/service-edit/{serviceId}', 'ServiceController@edit')->name('service.edit');
+Route::get('/service-delete/{serviceId}', 'ServiceController@delete')->name('service.delete');
 
 
 

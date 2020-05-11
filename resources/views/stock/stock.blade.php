@@ -27,21 +27,21 @@
                 </ul>
                 <ul class="navbar-nav my-2 my-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="/stock">Stock <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ route('stock.view') }}">Stock <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/service">Service <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ route('service.view') }}">Service <span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
     <br />
-
-    @yield('stockTable')
-    @yield('create')
-    @yield('edit')
-
+    <div class="body-content">
+        @yield('stockTable')
+        @yield('create')
+        @yield('edit')
+    </div>
 </body>
 
 <script>

@@ -7,7 +7,7 @@
     <hr>
 
     <!-- Add a button for add -->
-    <a href="/service-create" class="btn btn-primary btn-sm mb-3"> Add Service Record </a>
+    <a href="{{ route('service.createView')}}" class="btn btn-primary btn-sm mb-3"> Add Service Record </a>
     <table class="table table-bordered table-striped ">
         <thead class="thead-dark">
             <tr>
@@ -33,10 +33,10 @@
                 <td>{{$data->status}}</td>
                 <td>{{$data->remark}}</td>
                 <td>{{$data->quantity}}</td>
-                <td><a href="/service-edit/{{$data->id}}" class="btn btn-info btn-sm">Edit</a>
+                <td><a href="{{ route('service.editView',$data)}}" class="btn btn-info btn-sm">Edit</a>
                     <a class="btn btn-danger btn-sm"
                         onclick="if(!(confirm('Are you sure you want to delete this employee?')))return false"
-                        href="/service-delete/{{$data->id}}">Delete</a>
+                        href="{{ route('service.delete',$data)}}">Delete</a>
                 </td>
             </tr>
             @endforeach
