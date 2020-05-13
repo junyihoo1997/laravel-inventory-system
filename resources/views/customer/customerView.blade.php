@@ -31,9 +31,26 @@
             @endforeach
         </tbody>
     </table>
+    {{$customer->links()}}
     @else
-    <br> No records found
+    <br> No records found <br> <br>
     @endif
+    <br>
+    <hr>
+    <p class="h4 mb-4">Search Customer Record</p>
+    <form action="{{ route('customer.view') }}" method="POST">
+        @csrf
+        @method('GET')
+        @if(count($customer)>0)
+        <div class="form-group">
+            <input class="form-control mb-4" type="text" id="customerName" name="customerName" value=""
+                placeholder="Customer Name">
+        </div>
+        <button type="submit" class="btn btn-info col-2">Search</button>
+        @else
+        <button type="submit" class="btn btn-primary col-2">Refresh</button>
+        @endif
+    </form>
 </div>
 
 @endsection

@@ -37,16 +37,31 @@
                 <td>{{date('d/m/Y', strtotime($data->dateOut))}}</td>
                 <td>{{$data->remark}}</td>
                 <td><a href="{{ route('service.editView',$data)}}" class="btn btn-info btn-sm">Edit</a>
-                    <a class="btn btn-danger btn-sm"
-                        onclick="if(!(confirm('Are you sure you want to delete this employee?')))return false"
-                        href="{{ route('service.delete',$data)}}">Delete</a>
+                    <a class="btn btn-danger btn-sm" onclick="if(!(confirm('Are you sure you want to delete this employee?')))return false" href="{{ route('service.delete',$data)}}">Delete</a>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
+    {{$service->links()}}
     @else
-        <br> No records found
+    <br> No records found <br> <br>
     @endif
+    <br>
+    <hr>
+    <p class="h4 mb-4">Search Service Record</p>
+    <form action="{{ route('service.view') }}" method="POST">
+        @csrf
+        @method('GET')
+        @if(count($service)>0)
+        <div class="form-group">
+            <input class="form-control mb-4" type="text" id="modelName" name="modelName" value="" placeholder="Model Name">
+        </div>
+        <button type="submit" class="btn btn-info col-2">Search</button>
+        @else
+        <button type="submit" class="btn btn-primary col-2">Refresh</button>
+
+        @endif
+    </form>
 </div>
 @endsection

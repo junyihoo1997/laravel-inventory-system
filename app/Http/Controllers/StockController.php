@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+
 use App\Stock;
-
-
+use phpDocumentor\Reflection\Types\Null_;
 
 class StockController extends Controller
 {
@@ -19,10 +20,18 @@ class StockController extends Controller
 
     public function view()
     {
-        $stockData = Stock::latest()->get();;
-        return view('stock.stockView', [
-            'stock' => $stockData
-        ]);
+        $modelName = request('modelName');
+        if ($modelName != "") {
+            $stockData = Stock::where('modelName', 'LIKE', $modelName)->paginate(10);
+            return view('stock.stockView', [
+                'stock' => $stockData
+            ]);
+        } else {
+            $stockData = Stock::paginate(10);
+            return view('stock.stockView', [
+                'stock' => $stockData
+            ]);
+        }
     }
 
     public function createView()

@@ -19,10 +19,18 @@ class ServiceController extends Controller
 
     public function view()
     {
-        $serviceData = Service::latest()->get();
-        return view('service.serviceView', [
-            'service'=> $serviceData
-        ]);
+        $modelName = request('modelName');
+        if ($modelName != "") {
+            $serviceData = Service::where('modelName', 'LIKE', $modelName)->paginate(10);
+            return view('service.serviceView', [
+                'service' => $serviceData
+            ]);
+        } else {
+            $serviceData = Service::paginate(10);
+            return view('service.serviceView', [
+                'service' => $serviceData
+            ]);
+        }
     }
 
     public function createView()
@@ -31,56 +39,55 @@ class ServiceController extends Controller
         $customer = Customer::latest()->get();
 
         return view('service.serviceCreate', [
-            'service'=> $serviceData,
+            'service' => $serviceData,
             'customer' => $customer
-        ]);       
+        ]);
     }
 
     public function create()
     {
         Service::create(request()->validate([
-            'modelName' => ['required','min:3','max:255'],
-            'serialNumber' => ['required','min:3','max:255'],
-            'flowTagNumber' => ['required','min:3','max:255'],
-            'type' => ['required','min:3','max:255'],
-            'quantity' => ['required','min:3','max:255'],
-            'status' => ['required','min:3','max:255'],
+            'modelName' => ['required', 'min:3', 'max:255'],
+            'serialNumber' => ['required', 'min:3', 'max:255'],
+            'flowTagNumber' => ['required', 'min:3', 'max:255'],
+            'type' => ['required', 'min:3', 'max:255'],
+            'quantity' => ['required', 'min:3', 'max:255'],
+            'status' => ['required', 'min:3', 'max:255'],
             'remark' => 'nullable',
             'dateIn' => 'date|nullable',
             'dateOut' => 'date|nullable'
         ]));
-        return redirect(route('service.view'));     
+        return redirect(route('service.view'));
     }
-    
+
     public function editView(Service $serviceId)
     {
         $serviceData = Service::paginate(10);
         return view('service.serviceEdit', [
-            'serviceData'=> $serviceData,
+            'serviceData' => $serviceData,
             'service' => $serviceId
-        ]);      
+        ]);
     }
 
     public function edit(Service $serviceId)
     {
         $serviceId->update(request()->validate([
-            'modelName' => ['required','min:3','max:255'],
-            'serialNumber' => ['required','min:3','max:255'],
-            'flowTagNumber' => ['required','min:3','max:255'],
-            'type' => ['required','min:3','max:255'],
-            'quantity' => ['required','min:3','max:255'],
-            'status' => ['required','min:3','max:255'],
+            'modelName' => ['required', 'min:3', 'max:255'],
+            'serialNumber' => ['required', 'min:3', 'max:255'],
+            'flowTagNumber' => ['required', 'min:3', 'max:255'],
+            'type' => ['required', 'min:3', 'max:255'],
+            'quantity' => ['required', 'min:3', 'max:255'],
+            'status' => ['required', 'min:3', 'max:255'],
             'remark' => 'nullable',
-            'dateIn' => ['min:3','max:255'],
+            'dateIn' => ['min:3', 'max:255'],
             'dateOut' => ['min:3', 'max:255']
         ]));
-        return redirect(route('service.view'));        
+        return redirect(route('service.view'));
     }
 
     public function delete(Service $serviceId)
     {
         $serviceId->delete();
-        return redirect(route('service.view'));             
+        return redirect(route('service.view'));
     }
-    
 }

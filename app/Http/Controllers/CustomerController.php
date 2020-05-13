@@ -17,10 +17,20 @@ class CustomerController extends Controller
 
     public function view()
     {
-        $customerData = Customer::latest()->get();;
-        return view('customer.customerView', [
-            'customer' => $customerData
-        ]);
+        $customerName = request('customerName');
+        if ($customerName != "") {
+            $customerData = Customer::where('customerName', 'LIKE', $customerName)->paginate(10);
+            return view('customer.customerView', [
+                'customer' => $customerData
+            ]);
+        } else {
+            $customerData = Customer::paginate(10);
+            return view('customer.customerView', [
+                'customer' => $customerData
+            ]);
+        }
+
+        
     }
 
     public function createView()
