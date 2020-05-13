@@ -12,6 +12,11 @@ class StockController extends Controller
 {
     //
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function view()
     {
         $stockData = Stock::latest()->get();;
@@ -22,7 +27,7 @@ class StockController extends Controller
 
     public function createView()
     {
-        $stockData = Stock::latest()->get();
+        $stockData = Stock::paginate(10);
         return view('stock.stockCreate', [
             'stock' => $stockData
         ]);
@@ -35,14 +40,15 @@ class StockController extends Controller
             'type' => ['required', 'min:3', 'max:255'],
             'quantity' => ['required', 'min:3', 'max:255'],
             'status' => ['required', 'min:3', 'max:255'],
-            'remark' => ['min:3', 'max:255']
+            'remark' => 'nullable'
         ]));
         return redirect(route('stock.view'));
     }
 
     public function editView(Stock $stockId)
     {
-        $stockData = Stock::latest()->get();
+        $stockData = Stock::paginate(10);
+        // $stockData = Stock::latest()->get();
         return view('stock.stockEdit', [
             'stockData' => $stockData,
             'stock' => $stockId
@@ -56,7 +62,7 @@ class StockController extends Controller
             'type' => ['required', 'min:3', 'max:255'],
             'quantity' => ['required', 'min:3', 'max:255'],
             'status' => ['required', 'min:3', 'max:255'],
-            'remark' => ['min:3', 'max:255']
+            'remark' => 'nullable'
         ]));
         return redirect(route('stock.view'));
     }

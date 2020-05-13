@@ -10,31 +10,42 @@
     <table class="table table-bordered table-striped ">
         <thead class="thead-dark">
             <tr>
-                <th>ID</th>
                 <th>Model name</th>
                 <th>Serial number</th>
                 <th>FlowTag number</th>
                 <th>Type</th>
                 <th>Status</th>
-                <th>Remark</th>
                 <th>Quantity</th>
+                <th>Date In</th>
+                <th>Date Out</th>
+                <th>Remark</th>
+                <th>Action</th>
+
             </tr>
         </thead>
         <tbody>
             @foreach ($serviceData as $data)
             <tr>
-                <td>{{$data->id}}</td>
                 <td>{{$data->modelName}}</td>
                 <td>{{$data->serialNumber}}</td>
                 <td>{{$data->flowTagNumber}}</td>
                 <td>{{$data->type}}</td>
                 <td>{{$data->status}}</td>
-                <td>{{$data->remark}}</td>
                 <td>{{$data->quantity}}</td>
+                <td>{{date('d/m/Y', strtotime($data->dateIn))}}</td>
+                <td>{{date('d/m/Y', strtotime($data->dateOut))}}</td>
+                <td>{{$data->remark}}</td>
+                <td><a href="{{ route('service.editView',$data)}}" class="btn btn-info btn-sm">Edit</a>
+                    <a class="btn btn-danger btn-sm"
+                        onclick="if(!(confirm('Are you sure you want to delete this employee?')))return false"
+                        href="{{ route('service.delete',$data)}}">Delete</a>
+                </td>
             </tr>
             @endforeach
         </tbody>
     </table>
+    {{$serviceData->links()}}
+
     <hr>
 
     @endsection
@@ -48,7 +59,7 @@
             @csrf
             @method('PUT')
             <div class="form-group">
-                <input class="form-control mb-4" type="text" value="{{$service->id}}" placeholder="{{$service->id}}"
+                <input class="form-control mb-4" type="hidden" value="{{$service->id}}" placeholder="{{$service->id}}"
                     disabled>
             </div>
             <div class="form-group">
@@ -100,6 +111,20 @@
                     name="remark" value="{{$service->remark}}" placeholder="Remark">
                 @error('remark')
                 <div class="errorMsg">{{$errors->first('remark')}}</div>
+                @enderror
+            </div>
+            <div class="form-group">
+                <input class="@error('dateIn')inputError @enderror form-control mb-4" name="dateIn" type="date"
+                    value="{{$service->dateIn}}" id="dateIn" placeholder="Date In">
+                @error('dateIn')
+                <div class="errorMsg">{{$errors->first('dateIn')}}</div>
+                @enderror
+            </div>
+            <div class="form-group">
+                <input class="@error('dateOut')inputError @enderror form-control mb-4" name="dateOut" type="date"
+                    value="{{$service->dateOut}}" id="dateOut" placeholder="Date Out">
+                @error('dateOut')
+                <div class="errorMsg">{{$errors->first('dateOut')}}</div>
                 @enderror
             </div>
             <button type="submit" class="btn btn-info col-2">Submit</button>

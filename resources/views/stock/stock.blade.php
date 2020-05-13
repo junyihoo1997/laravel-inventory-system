@@ -26,11 +26,14 @@
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 </ul>
                 <ul class="navbar-nav my-2 my-lg-0">
-                    <li class="nav-item">
+                <li class="nav-item">
                         <a class="nav-link" href="{{ route('stock.view') }}">Stock <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('service.view') }}">Service <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('customer.view') }}">Customer <span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
             </div>
@@ -45,24 +48,6 @@
 </body>
 
 <script>
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function() {
-    'use strict';
-    window.addEventListener('load', function() {
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.getElementsByClassName('needs-validation');
-        // Loop over them and prevent submission
-        var validation = Array.prototype.filter.call(forms, function(form) {
-            form.addEventListener('submit', function(event) {
-                if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        });
-    }, false);
-})();
 </script>
 
 </html>

@@ -19,6 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+
 
 
 Route::get('/stock', 'StockController@view')->name('stock.view');
@@ -35,8 +37,14 @@ Route::get('/service-edit/{serviceId}', 'ServiceController@editView')->name('ser
 Route::put('/service-edit/{serviceId}', 'ServiceController@edit')->name('service.edit');
 Route::get('/service-delete/{serviceId}', 'ServiceController@delete')->name('service.delete');
 
+Route::get('/customer', 'CustomerController@view')->name('customer.view');
+Route::get('/customer-create', 'CustomerController@createView')->name('customer.createView');
+Route::post('/customer-create', 'CustomerController@create')->name('customer.create');
+Route::get('/customer-edit/{customerId}', 'CustomerController@editView')->name('customer.editView');
+Route::put('/customer-edit/{customerId}', 'CustomerController@edit')->name('customer.edit');
+Route::get('/customer-delete/{customerId}', 'CustomerController@delete')->name('customer.delete');
 
 
-Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');

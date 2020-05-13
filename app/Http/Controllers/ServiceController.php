@@ -4,10 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Service;
+use App\Customer;
+
 
 class ServiceController extends Controller
 {
     //
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
 
     public function view()
@@ -20,9 +27,12 @@ class ServiceController extends Controller
 
     public function createView()
     {
-        $serviceData = Service::latest()->get();
+        $serviceData = Service::paginate(10);
+        $customer = Customer::latest()->get();
+
         return view('service.serviceCreate', [
-            'service'=> $serviceData
+            'service'=> $serviceData,
+            'customer' => $customer
         ]);       
     }
 
@@ -35,14 +45,16 @@ class ServiceController extends Controller
             'type' => ['required','min:3','max:255'],
             'quantity' => ['required','min:3','max:255'],
             'status' => ['required','min:3','max:255'],
-            'remark' => ['min:3', 'max:255']
+            'remark' => 'nullable',
+            'dateIn' => 'date|nullable',
+            'dateOut' => 'date|nullable'
         ]));
         return redirect(route('service.view'));     
     }
     
     public function editView(Service $serviceId)
     {
-        $serviceData = Service::latest()->get();
+        $serviceData = Service::paginate(10);
         return view('service.serviceEdit', [
             'serviceData'=> $serviceData,
             'service' => $serviceId
@@ -58,7 +70,9 @@ class ServiceController extends Controller
             'type' => ['required','min:3','max:255'],
             'quantity' => ['required','min:3','max:255'],
             'status' => ['required','min:3','max:255'],
-            'remark' => ['min:3', 'max:255']
+            'remark' => 'nullable',
+            'dateIn' => ['min:3','max:255'],
+            'dateOut' => ['min:3', 'max:255']
         ]));
         return redirect(route('service.view'));        
     }

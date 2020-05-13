@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 
-class stock extends Model
+class customer extends Model
 {
-    protected $fillable = ['modelName','type','quantity','status','remark'];
+    //
+
+    protected $fillable = ['customerName','companyName'];
 
     // protected static function boot()
     // {
