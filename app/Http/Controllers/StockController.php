@@ -22,7 +22,7 @@ class StockController extends Controller
     {
         $modelName = request('modelName');
         if ($modelName != "") {
-            $stockData = Stock::where('modelName', 'LIKE', $modelName)->paginate(10);
+            $stockData = Stock::where('modelName', 'LIKE', '%'.$modelName.'%')->paginate(10);
             return view('stock.stockView', [
                 'stock' => $stockData
             ]);

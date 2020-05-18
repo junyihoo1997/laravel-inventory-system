@@ -19,7 +19,7 @@ class CustomerController extends Controller
     {
         $customerName = request('customerName');
         if ($customerName != "") {
-            $customerData = Customer::where('customerName', 'LIKE', $customerName)->paginate(10);
+            $customerData = Customer::where('customerName', 'LIKE', '%'.$customerName.'%')->paginate(10);
             return view('customer.customerView', [
                 'customer' => $customerData
             ]);

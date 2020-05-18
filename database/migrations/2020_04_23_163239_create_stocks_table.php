@@ -22,10 +22,7 @@ class CreateStocksTable extends Migration
             $table->string('status');
             $table->string('remark')->nullable();
             // $table->foreignId('customerId')->constrained('customers');
-            $table->timestamps();
-
-
-           
+            $table->timestamps();           
         });
     }
 

@@ -21,7 +21,7 @@ class ServiceController extends Controller
     {
         $modelName = request('modelName');
         if ($modelName != "") {
-            $serviceData = Service::where('modelName', 'LIKE', $modelName)->paginate(10);
+            $serviceData = Service::where('modelName', 'LIKE', '%'.$modelName.'%')->paginate(10);
             return view('service.serviceView', [
                 'service' => $serviceData
             ]);
