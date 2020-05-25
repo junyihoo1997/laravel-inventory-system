@@ -30,4 +30,8 @@ class customer extends Model
     // {
     //     return 'string';
     // }
+
+    // public function services(){
+    //     return $this->hasMany(Service::class);
+    // }
 }

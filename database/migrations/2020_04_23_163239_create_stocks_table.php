@@ -18,7 +18,7 @@ class CreateStocksTable extends Migration
             $table->increments('id');
             $table->string('modelName');
             $table->string('type');
-            $table->string('quantity');
+            $table->integer('quantity');
             $table->string('status');
             $table->string('remark')->nullable();
             // $table->foreignId('customerId')->constrained('customers');

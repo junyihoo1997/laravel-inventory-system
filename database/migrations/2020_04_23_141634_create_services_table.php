@@ -23,7 +23,7 @@ class CreateServicesTable extends Migration
             $table->string('serialNumber');
             $table->string('flowTagNumber');
             $table->string('type');
-            $table->string('quantity');
+            $table->integer('quantity');
             $table->string('status');
             $table->date('dateIn')->nullable();	
             $table->date('dateOut')->nullable();	

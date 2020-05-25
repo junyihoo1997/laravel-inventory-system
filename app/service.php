@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 class service extends Model
 {
     //
-    protected $fillable = ['modelName','type','flowTagNumber','serialNumber','quantity','status','remark','dateIn','dateOut'];
+    protected $fillable = ['modelName','customerId','type','flowTagNumber','serialNumber','quantity','status','remark','dateIn','dateOut'];
 
     // protected static function boot()
     // {
@@ -28,6 +28,10 @@ class service extends Model
     // public function getKeyType()
     // {
     //     return 'string';
+    // }
+
+    // public function customers(){
+        
     // }
 
 }

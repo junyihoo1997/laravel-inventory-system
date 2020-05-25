@@ -7,6 +7,7 @@
     <hr>
 
     <!-- Add a button for add -->
+    @if(count($serviceData)>0)
     <table class="table table-bordered table-striped ">
         <thead class="thead-dark">
             <tr>
@@ -17,7 +18,7 @@
                 <th>Status</th>
                 <th>Quantity</th>
                 <th>Date In</th>
-                <th>Date Out</th>
+                <!-- <th>Date Out</th> -->
                 <th>Remark</th>
                 <th>Action</th>
 
@@ -33,7 +34,7 @@
                 <td>{{$data->status}}</td>
                 <td>{{$data->quantity}}</td>
                 <td>{{date('d/m/Y', strtotime($data->dateIn))}}</td>
-                <td>{{date('d/m/Y', strtotime($data->dateOut))}}</td>
+                <!-- <td>{{date('d/m/Y', strtotime($data->dateOut))}}</td> -->
                 <td>{{$data->remark}}</td>
                 <td><a href="{{ route('service.editView',$data)}}" class="btn btn-info btn-sm">Edit</a>
                     <a class="btn btn-danger btn-sm"
@@ -45,7 +46,10 @@
         </tbody>
     </table>
     {{$serviceData->links()}}
-
+    @else
+        No records found
+    @endif
+    <br>
     <hr>
 
     @endsection
@@ -120,13 +124,13 @@
                 <div class="errorMsg">{{$errors->first('dateIn')}}</div>
                 @enderror
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <input class="@error('dateOut')inputError @enderror form-control mb-4" name="dateOut" type="date"
                     value="{{$service->dateOut}}" id="dateOut" placeholder="Date Out">
                 @error('dateOut')
                 <div class="errorMsg">{{$errors->first('dateOut')}}</div>
                 @enderror
-            </div>
+            </div> -->
             <button type="submit" class="btn btn-info col-2">Submit</button>
             <a href="{{ route('service.view') }}" class="btn btn-primary col-2">Back</a>
         </form>

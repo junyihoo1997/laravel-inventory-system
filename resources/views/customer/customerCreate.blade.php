@@ -4,7 +4,7 @@
 <div class="container">
     <h3>Customer Directory</h3>
     <hr>
-
+    @if(count($customer)>0)
     <table class="table table-bordered table-striped ">
         <thead class="thead-dark">
             <tr>
@@ -22,6 +22,9 @@
         </tbody>
     </table>
     {{$customer->links()}}
+    @else
+    No records found
+    @endif
     <hr>
 </div>
 @endsection

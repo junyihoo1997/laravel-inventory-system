@@ -51,11 +51,11 @@ class ServiceController extends Controller
             'serialNumber' => ['required', 'min:3', 'max:255'],
             'flowTagNumber' => ['required', 'min:3', 'max:255'],
             'type' => ['required', 'min:3', 'max:255'],
-            'quantity' => ['required', 'min:1'],
+            'quantity' => ['required', 'min:1', 'numeric'],
             'status' => ['required', 'min:3', 'max:255'],
             'remark' => 'nullable',
-            'dateIn' => 'date|nullable',
-            'dateOut' => 'date|nullable'
+            'dateIn' => 'date',
+            'dateOut' => 'date'
         ]));
         return redirect(route('service.view'));
     }
@@ -76,11 +76,11 @@ class ServiceController extends Controller
             'serialNumber' => ['required', 'min:3', 'max:255'],
             'flowTagNumber' => ['required', 'min:3', 'max:255'],
             'type' => ['required', 'min:3', 'max:255'],
-            'quantity' => ['required', 'min:1'],
+            'quantity' => ['required', 'min:1','numeric'],
             'status' => ['required', 'min:3', 'max:255'],
             'remark' => 'nullable',
-            'dateIn' => ['min:3', 'max:255'],
-            'dateOut' => ['min:3', 'max:255']
+            'dateIn' => 'date',
+            'dateOut' => 'date'
         ]));
         return redirect(route('service.view'));
     }

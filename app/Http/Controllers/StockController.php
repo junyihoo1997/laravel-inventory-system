@@ -47,7 +47,7 @@ class StockController extends Controller
         Stock::create(request()->validate([
             'modelName' => ['required', 'min:3', 'max:255'],
             'type' => ['required', 'min:3', 'max:255'],
-            'quantity' => ['required', 'min:1'],
+            'quantity' => ['required', 'min:1','numeric'],
             'status' => ['required', 'min:3', 'max:255'],
             'remark' => 'nullable'
         ]));
@@ -69,7 +69,7 @@ class StockController extends Controller
         $stockId->update(request()->validate([
             'modelName' => ['required', 'min:3', 'max:255'],
             'type' => ['required', 'min:3', 'max:255'],
-            'quantity' => ['required', 'min:1'],
+            'quantity' => ['required', 'min:1','numeric'],
             'status' => ['required', 'min:3', 'max:255'],
             'remark' => 'nullable'
         ]));

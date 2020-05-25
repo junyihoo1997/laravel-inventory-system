@@ -19,7 +19,7 @@
                 <th>Status</th>
                 <th>Quantity</th>
                 <th>Date In</th>
-                <th>Date Out</th>
+                <!-- <th>Date Out</th> -->
                 <th>Remark</th>
                 <th>Action</th>
             </tr>
@@ -34,7 +34,7 @@
                 <td>{{$data->status}}</td>
                 <td>{{$data->quantity}}</td>
                 <td>{{date('d/m/Y', strtotime($data->dateIn))}}</td>
-                <td>{{date('d/m/Y', strtotime($data->dateOut))}}</td>
+                <!-- <td>{{date('d/m/Y', strtotime($data->dateOut))}}</td> -->
                 <td>{{$data->remark}}</td>
                 <td><a href="{{ route('service.editView',$data)}}" class="btn btn-info btn-sm">Edit</a>
                     <a class="btn btn-danger btn-sm" onclick="if(!(confirm('Are you sure you want to delete this employee?')))return false" href="{{ route('service.delete',$data)}}">Delete</a>

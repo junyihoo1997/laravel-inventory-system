@@ -10,6 +10,7 @@ $factory->define(Service::class, function (Faker $faker) {
         //
         // 'customerId'=> factory(\App\Customer::class),
         'modelName'=> $faker->name,
+        // 'customerId'=> factory(\App\Customer::class),
         'flowTagNumber'=> $faker->name,
         'serialNumber'=> $faker->name,
         'type'=> $faker->name,

@@ -7,6 +7,7 @@
     <hr>
 
     <!-- Add a button for add -->
+    @if(count($service)>0)
     <table class="table table-bordered table-striped ">
         <thead class="thead-dark">
             <tr>
@@ -17,7 +18,7 @@
                 <th>Status</th>
                 <th>Quantity</th>
                 <th>Date In</th>
-                <th>Date Out</th>
+                <!-- <th>Date Out</th> -->
                 <th>Remark</th>
             </tr>
         </thead>
@@ -31,13 +32,17 @@
                 <td>{{$data->status}}</td>
                 <td>{{$data->quantity}}</td>
                 <td>{{date('d/m/Y', strtotime($data->dateIn))}}</td>
-                <td>{{date('d/m/Y', strtotime($data->dateOut))}}</td>
+                <!-- <td>{{date('d/m/Y', strtotime($data->dateOut))}}</td> -->
                 <td>{{$data->remark}}</td>
             </tr>
             @endforeach
         </tbody>
     </table>
     {{$service->links()}}
+    @else
+    No records found
+    @endif
+    <br>
     <hr>
 </div>
 @endsection
@@ -87,7 +92,7 @@
         </div>
         <div class="form-group">
             <input class="@error('quantity')inputError @enderror form-control mb-4" type="text" id="quantity"
-                name="quantity" value="{{ old('modelName') }}" placeholder="Quantity">
+                name="quantity" value="{{ old('quantity') }}" placeholder="Quantity">
             @error('quantity')
             <div class="errorMsg">{{$errors->first('quantity')}}</div>
             @enderror
@@ -99,13 +104,13 @@
             <div class="errorMsg">{{$errors->first('dateIn')}}</div>
             @enderror
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
             <input class="@error('dateOut')inputError @enderror form-control mb-4" name="dateOut" type="date"
                 value="{{ old('dateOut') }}" id="dateOut" placeholder="Date Out">
             @error('dateOut')
             <div class="errorMsg">{{$errors->first('dateOut')}}</div>
             @enderror
-        </div>
+        </div> -->
 
         <div class="form-group">
             <input class="@error('remark')inputError @enderror form-control mb-4" type="text" id="remark" name="remark"
