@@ -26,7 +26,7 @@ class ServiceController extends Controller
                 'service' => $serviceData
             ]);
         } else {
-            $serviceData = Service::paginate(10);
+            $serviceData = Service::latest()->paginate(10);
             return view('service.serviceView', [
                 'service' => $serviceData
             ]);
@@ -35,7 +35,7 @@ class ServiceController extends Controller
 
     public function createView()
     {
-        $serviceData = Service::paginate(10);
+        $serviceData = Service::latest()->paginate(10);
         $customer = Customer::latest()->get();
 
         return view('service.serviceCreate', [
@@ -62,7 +62,7 @@ class ServiceController extends Controller
 
     public function editView(Service $serviceId)
     {
-        $serviceData = Service::paginate(10);
+        $serviceData = Service::latest()->paginate(10);
         return view('service.serviceEdit', [
             'serviceData' => $serviceData,
             'service' => $serviceId

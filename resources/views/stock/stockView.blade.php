@@ -32,9 +32,7 @@
                 <td>{{$data->quantity}}</td>
                 <td>{{$data->remark}}</td>
                 <td><a href="{{ route('stock.editView',$data) }}" class="btn btn-info btn-sm">Edit</a>
-                    <a class="btn btn-danger btn-sm"
-                        onclick="if(!(confirm('Are you sure you want to delete this employee?')))return false"
-                        href="{{ route('stock.delete',$data) }}">Delete</a>
+                    <a class="btn btn-danger btn-sm" onclick="if(!(confirm('Are you sure you want to delete this employee?')))return false" href="{{ route('stock.delete',$data) }}">Delete</a>
                 </td>
             </tr>
             @endforeach
@@ -52,8 +50,7 @@
         @method('GET')
         @if(count($stock)>0)
         <div class="form-group">
-            <input class="form-control mb-4" type="text" id="modelName" name="modelName" value=""
-                placeholder="Model Name">
+            <input class="form-control mb-4" type="text" id="modelName" name="modelName" value="" placeholder="Model Name">
         </div>
         <button type="submit" class="btn btn-info col-2">Search</button>
         @else

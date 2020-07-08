@@ -24,7 +24,7 @@ class CustomerController extends Controller
                 'customer' => $customerData
             ]);
         } else {
-            $customerData = Customer::paginate(10);
+            $customerData = Customer::latest()->paginate(10);
             return view('customer.customerView', [
                 'customer' => $customerData
             ]);
@@ -35,7 +35,7 @@ class CustomerController extends Controller
 
     public function createView()
     {
-        $customerData = Customer::paginate(10);
+        $customerData = Customer::latest()->paginate(10);
         return view('customer.customerCreate', [
             'customer' => $customerData
         ]);
@@ -52,7 +52,7 @@ class CustomerController extends Controller
 
     public function editView(Customer $customerId)
     {
-        $customerData = Customer::paginate(10);
+        $customerData = Customer::latest()->paginate(10);
         return view('customer.customerEdit', [
             'customerData' => $customerData,
             'customer' => $customerId

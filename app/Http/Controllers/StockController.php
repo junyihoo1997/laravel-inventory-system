@@ -24,7 +24,7 @@ class StockController extends Controller
                 'stock' => $stockData
             ]);
         } else {
-            $stockData = Stock::paginate(10);
+            $stockData = Stock::latest()->paginate(10);
             return view('stock.stockView', [
                 'stock' => $stockData
             ]);
@@ -33,7 +33,7 @@ class StockController extends Controller
 
     public function createView()
     {
-        $stockData = Stock::paginate(10);
+        $stockData = Stock::latest()->paginate(10);
         return view('stock.stockCreate', [
             'stock' => $stockData
         ]);
@@ -53,7 +53,7 @@ class StockController extends Controller
 
     public function editView(Stock $stockId)
     {
-        $stockData = Stock::paginate(10);
+        $stockData = Stock::latest()->paginate(10);
         // $stockData = Stock::latest()->get();
         return view('stock.stockEdit', [
             'stockData' => $stockData,
